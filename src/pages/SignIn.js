@@ -65,7 +65,7 @@ export const SignIn = () => {
         >
           Sign In
         </button>
-        <a>Do you have an account?</a>
+        <a href="/sign-up">Do you have an account?</a>
       </div>
     </div>
   );

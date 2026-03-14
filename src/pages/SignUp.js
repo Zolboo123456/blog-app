@@ -102,7 +102,6 @@ export const SignUp = () => {
           style={{
             color: "white",
             backgroundColor: "rgb(75, 107, 251)",
-            height: "28px",
             border: "none",
             borderRadius: "5px",
             height: "46px",
@@ -112,7 +111,7 @@ export const SignUp = () => {
         >
           Sign Up
         </button>
-        <a>Already have an account?</a>
+        <a href="/sign-in">Already have an account?</a>
       </div>
     </div>
   );
