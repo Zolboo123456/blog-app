@@ -1,4 +1,36 @@
+import React, { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { TextField } from "../components/TextField";
+import { signInFunction } from "../firebase/Firebase";
+import { Button } from "../components/Button";
+
 export const SignIn = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
+
+  const handleLogIn = async (e) => {
+    e.preventDefault();
+
+    if (!email || !password) {
+      alert("Email and password are required");
+      return;
+    }
+
+    try {
+      await signInFunction(email, password);
+
+      setEmail("");
+      setPassword("");
+
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+      alert("Invalid email or password");
+    }
+  };
+
   return (
     <div
       style={{
@@ -8,7 +40,8 @@ export const SignIn = () => {
         alignItems: "center",
       }}
     >
-      <div
+      <form
+        onSubmit={handleLogIn}
         style={{
           padding: "30px",
           width: "300px",
@@ -30,43 +63,35 @@ export const SignIn = () => {
         >
           Sign In
         </h2>
-        <input
-          type="mail"
+
+        <TextField
+          type="email"
           placeholder="Email"
-          style={{
-            height: "28px",
-            borderRadius: "8px",
-            border: "1px solid #ccc",
-            padding: "3px",
-            paddingLeft: "12px",
-          }}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
-        <input
+
+        <TextField
           type="password"
           placeholder="Password"
-          style={{
-            height: "28px",
-            borderRadius: "8px",
-            border: "1px solid #ccc",
-            padding: "3px",
-            paddingLeft: "12px",
-          }}
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
-        <button
+
+        <Button type="submit">Sign In</Button>
+
+        <Link
+          to="/sign-up"
           style={{
-            height: "36px",
-            width: "300px",
-            backgroundColor: "#4b6bfb",
-            border: "none",
-            color: "white",
-            borderRadius: "5px",
-            padding: "10px 16px",
+            textDecoration: "none",
+            color: "black",
+            cursor: "pointer",
+            fontSize: "14px",
           }}
         >
-          Sign In
-        </button>
-        <a href="/sign-up">Do you have an account?</a>
-      </div>
+          Do not have an account?
+        </Link>
+      </form>
     </div>
   );
 };
