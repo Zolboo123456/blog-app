@@ -1,5 +1,3 @@
-import React, { Children } from "react";
-
 export const Button = (props) => {
   const { children, ...rest } = props;
 
@@ -13,6 +11,7 @@ export const Button = (props) => {
         cursor: "pointer",
         color: "white",
       }}
+      {...rest}
     >
       {children}
     </button>

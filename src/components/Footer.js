@@ -71,10 +71,26 @@ export const Footer = () => {
           </div>
 
           <div id="social" style={{ display: "flex", gap: "10px" }}>
-            <img src={facebookLogo} style={{ height: "16px" }} />
-            <img src={twitterLogo} style={{ height: "16px" }} />
-            <img src={instagramLogo} style={{ height: "16px" }} />
-            <img src={linkedinLogo} style={{ height: "16px" }} />
+            <img
+              src={facebookLogo}
+              style={{ height: "16px" }}
+              alt="facebookLogo"
+            />
+            <img
+              src={twitterLogo}
+              style={{ height: "16px" }}
+              alt="twitterLogo"
+            />
+            <img
+              src={instagramLogo}
+              style={{ height: "16px" }}
+              alt="instagramLogo"
+            />
+            <img
+              src={linkedinLogo}
+              style={{ height: "16px" }}
+              alt="linkedinLogo"
+            />
           </div>
         </div>
 
@@ -109,21 +125,21 @@ export const Footer = () => {
 
           <div style={{ display: "flex", gap: "20px", alignItems: "center" }}>
             <a
-              href="#"
+              href="/"
               style={{ color: "rgb(59, 60, 74)", textDecoration: "none" }}
             >
               Terms of Service
             </a>
             <hr style={{ height: "30px", backgroundColor: "whitesmoke" }} />
             <a
-              href="#"
+              href="/"
               style={{ color: "rgb(59, 60, 74)", textDecoration: "none" }}
             >
               Privacy Policy
             </a>
             <hr style={{ height: "30px", color: "whitesmoke" }} />
             <a
-              href="#"
+              href="/"
               style={{ color: "rgb(59, 60, 74)", textDecoration: "none" }}
             >
               Cookie Policy
