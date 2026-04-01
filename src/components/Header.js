@@ -1,6 +1,13 @@
 import companyLogo from "../images/Logo-2.png";
+import { Button } from "../components/Button";
+import { useUserContext } from "../context/UserContext";
+import { signOutFunction } from "../firebase/Firebase";
+import { Link } from "react-router-dom";
+import { useState } from "react";
 
 export const Header = () => {
+  const { currentUser } = useUserContext();
+  const [showMenu, setShowMenu] = useState(false);
   return (
     <div
       style={{
@@ -10,6 +17,7 @@ export const Header = () => {
         justifyContent: "space-between",
         alignItems: "center",
         padding: "0px 180px",
+        margin: "0 auto",
       }}
     >
       <div style={{ display: "flex", alignItems: "center" }}>
@@ -38,16 +46,61 @@ export const Header = () => {
           Contact
         </a>
       </div>
-      <input
-        type="text"
-        placeholder="Search"
+      <div
         style={{
-          backgroundColor: "#F4F4F5",
-          padding: "8px 8px 8px 16px",
-          border: "none",
-          borderRadius: "5px",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          gap: "20px",
         }}
-      />
+      >
+        {currentUser ? (
+          <div style={{ position: "relative" }}>
+            <div
+              onClick={() => setShowMenu(!showMenu)}
+              style={{
+                width: "40px",
+                height: "40px",
+                borderRadius: "50%",
+                backgroundColor: "#333",
+                color: "#fff",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontWeight: "bold",
+                cursor: "pointer",
+              }}
+            >
+              {currentUser.displayName
+                ?.split(" ")
+                .map((name) => name.charAt(0).toUpperCase())
+                .join("")}
+            </div>
+
+            {showMenu && (
+              <div
+                style={{
+                  position: "absolute",
+                  top: "50px",
+                  right: 0,
+                  backgroundColor: "#fff",
+                  border: "1px solid #ccc",
+                  borderRadius: "8px",
+                  padding: "10px",
+                  width: "81px",
+                }}
+              >
+                <Button onClick={signOutFunction}>Sign out</Button>
+              </div>
+            )}
+          </div>
+        ) : (
+          <Link to="/sign-in">
+            <Button>Sign In</Button>
+          </Link>
+        )}
+      </div>
     </div>
   );
 };

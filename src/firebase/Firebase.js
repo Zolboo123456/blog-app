@@ -4,6 +4,7 @@ import {
   getAuth,
   signInWithEmailAndPassword,
   updateProfile,
+  signOut,
 } from "firebase/auth";
 
 const firebaseConfig = {
@@ -28,4 +29,8 @@ export const signUp = (firstName, lastName, email, password) => {
 
 export const signInFunction = (email, password) => {
   return signInWithEmailAndPassword(auth, email, password);
+};
+
+export const signOutFunction = () => {
+  return signOut(auth);
 };

@@ -88,7 +88,7 @@ export const Contact = () => {
                 padding: "10px",
                 fontSize: "13.3333px",
                 borderRadius: "10px",
-                border: "1px solid gray",
+                border: "1px solid rgb(204, 204, 204)",
               }}
             />
             <input
@@ -97,7 +97,7 @@ export const Contact = () => {
                 width: "230px",
                 padding: "10px",
                 borderRadius: "10px",
-                border: "1px solid gray",
+                border: "1px solid rgb(204, 204, 204)",
               }}
             />
           </div>
@@ -106,13 +106,17 @@ export const Contact = () => {
             style={{
               borderRadius: "10px",
               padding: "8px",
-              border: "1px solid gray",
+              border: "1px solid rgb(204, 204, 204)",
             }}
           />
           <textarea
             placeholder="Write a message"
             rows={6}
-            style={{ borderRadius: "10px", padding: "16px" }}
+            style={{
+              borderRadius: "10px",
+              padding: "16px",
+              border: "1px solid rgb(204, 204, 204)",
+            }}
           ></textarea>
           <button
             style={{
