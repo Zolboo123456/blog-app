@@ -40,7 +40,10 @@ export const Header = () => {
           Home
         </a>
         <a href="/blog" style={{ textDecoration: "none", color: "#3B3C4A" }}>
-          Blog
+          Blogs
+        </a>
+        <a href="/tags" style={{ textDecoration: "none", color: "#3B3C4A" }}>
+          Tags
         </a>
         <a href="/contact" style={{ textDecoration: "none", color: "#3B3C4A" }}>
           Contact

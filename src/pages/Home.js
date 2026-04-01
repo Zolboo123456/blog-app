@@ -3,6 +3,7 @@ import { Footer } from "../components/Footer";
 import Mashin from "../images/mashin.png";
 import { useUserContext } from "../context/UserContext";
 import { TrendingCard } from "../components/TrendingCard";
+import { AllCard } from "../components/AllCard";
 
 export const Home = () => {
   const blog = {
@@ -18,7 +19,19 @@ export const Home = () => {
   return (
     <div>
       <Header />
-      <div id="homeContainer">
+
+      <div
+        id="homeContainer"
+        style={{
+          padding: "0px 40px",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "start",
+          justifyContent: "start",
+          maxWidth: "1200px",
+          margin: "0 auto",
+        }}
+      >
         <div
           style={{
             display: "flex",
@@ -95,16 +108,44 @@ export const Home = () => {
           </div>
         </div>
         <div
+          id="trending"
           style={{
             display: "flex",
             flexDirection: "column",
             gap: "20px",
-            margin: "50px 150px",
+            margin: "50px 0px",
           }}
         >
           <h2>Trending</h2>
           <div style={{ display: "flex", gap: "20px" }}>
             <TrendingCard blog={blog} />
+          </div>
+        </div>
+        <div
+          id="allBlogPosts"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "20px",
+            margin: "50px 0px",
+          }}
+        >
+          <h2 style={{ margin: "0px", padding: "0px" }}>All Blog Posts</h2>
+          <div
+            style={{
+              display: "flex",
+              gap: "20px",
+              fontSize: "14px",
+              fontWeight: "700",
+              cursor: "pointer",
+            }}
+          >
+            <div style={{ color: "rgb(212, 163, 115)" }}>All</div>
+            <div style={{ color: "rgb(0, 0, 0)" }}>Discovery</div>
+            <div style={{ color: "rgb(0, 0, 0)" }}>Technology</div>
+          </div>
+          <div style={{ display: "flex", gap: "20px" }}>
+            <AllCard />
           </div>
         </div>
       </div>

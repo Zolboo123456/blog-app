@@ -8,7 +8,7 @@ export const TrendingCard = ({ blog }) => {
           height: "320px",
           width: "280px",
           borderRadius: "12px",
-          backgroundImage: `url(${Mashin})`,
+          backgroundImage: `url(${blog.imageUrl || Mashin})`,
           backgroundPosition: "center",
           backgroundSize: "cover",
           filter: "brightness(60%)",
@@ -47,7 +47,7 @@ export const TrendingCard = ({ blog }) => {
               WebkitLineClamp: "2",
             }}
           >
-            The Impact of Technology on the Workplace: How Technology is
+            fdsf The Impact of Technology on the Workplace: How Technology is
             Changing
           </h2>
         </div>
