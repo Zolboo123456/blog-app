@@ -1,6 +1,4 @@
-import Mashin from "../images/mashin.png";
-
-export const AllCard = () => {
+export const AllCard = ({ blog }) => {
   return (
     <div style={{ display: "flex", flexWrap: "wrap", gap: "20px" }}>
       <div>
@@ -23,7 +21,7 @@ export const AllCard = () => {
               width: "340px",
               border: "1px solid rgb(232, 232, 234)",
               borderRadius: "6px",
-              backgroundImage: `url(${Mashin})`,
+              backgroundImage: `url(${blog.image})`,
               backgroundPosition: "center",
               backgroundSize: "cover",
             }}
@@ -46,22 +44,21 @@ export const AllCard = () => {
                   fontSize: "20px",
                 }}
               >
-                Technology
+                {blog.tag}
               </span>
             </div>
             <h2
               style={{
-                height: "60px",
+                height: "90px",
                 overflow: "hidden",
                 display: "-webkit-box",
                 WebkitBoxOrient: "vertical",
-                WebkitLineClamp: "2",
+                WebkitLineClamp: "3",
               }}
             >
-              The Impact of Technology on the Workplace: How Technology is
-              Changing
+              {blog.title}
             </h2>
-            December 23, 2024
+            {blog.date}
           </div>
         </div>
       </div>
