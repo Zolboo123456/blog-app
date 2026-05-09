@@ -5,9 +5,9 @@ import { useBlogContext } from "../context/BlogContext";
 import { useState } from "react";
 import { Button } from "../components/Button";
 import Card1 from "../images/card1.png";
-import { signOutFunction, database } from "../firebase/Firebase";
+import { database } from "../firebase/Firebase";
 import { deleteDoc, doc } from "firebase/firestore";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { UpdateBlogModal } from "../components/updateBlogModal";
 
 export const OneBlog = () => {
@@ -15,7 +15,6 @@ export const OneBlog = () => {
   const navigate = useNavigate();
   const { blogs } = useBlogContext();
   const { currentUser } = useUserContext();
-  const [showMenu, setShowMenu] = useState(false);
 
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
 

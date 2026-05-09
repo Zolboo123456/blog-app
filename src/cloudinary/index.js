@@ -26,7 +26,4 @@ export const uploadImage = async (file) => {
     console.error(error);
     return null;
   }
-
-  console.log(cloudName);
-  console.log(uploadPreset);
 };

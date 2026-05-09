@@ -1,6 +1,6 @@
 // import { Link } from "react-router-dom";
 // import { Button } from "../components/Button";
-import { useUserContext } from "../context/UserContext";
+// import { useUserContext } from "../context/UserContext";
 // import { signOutFunction } from "../firebase/Firebase";
 import { Header } from "../components/Header";
 import { IconButton } from "@mui/material";
@@ -96,6 +96,7 @@ export const Home = () => {
             }}
           >
             <a
+              href="/"
               onClick={() => setFilter("all")}
               style={{
                 color:
@@ -107,6 +108,7 @@ export const Home = () => {
               All
             </a>
             <a
+              href="/"
               onClick={() => setFilter("technology")}
               style={{
                 color:
@@ -118,6 +120,7 @@ export const Home = () => {
               Technology
             </a>
             <a
+              href="/"
               onClick={() => setFilter("art")}
               style={{
                 color:
