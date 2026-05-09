@@ -8,7 +8,11 @@ export const Footer = () => {
   return (
     <div
       id="footer"
-      style={{ padding: "60px 0px", backgroundColor: "rgb(246, 246, 247)" }}
+      style={{
+        padding: "60px 0px",
+        backgroundColor: "rgb(246, 246, 247)",
+        width: "100%",
+      }}
     >
       <div
         id="footerContainer"
@@ -97,7 +101,11 @@ export const Footer = () => {
         <hr
           style={{
             height: "1px",
-            width: "1150px",
+            width: "1200px",
+            border: "gray",
+            color: "gray",
+            backgroundColor: "gray",
+            borderRadius: "1px",
           }}
         />
 

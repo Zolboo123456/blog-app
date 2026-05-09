@@ -7,6 +7,7 @@ import { Button } from "../components/Button";
 export const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const navigate = useNavigate();
 
@@ -27,7 +28,7 @@ export const SignIn = () => {
       navigate("/");
     } catch (error) {
       console.log(error);
-      alert("Invalid email or password");
+      setError(error.message);
     }
   };
 
@@ -63,6 +64,8 @@ export const SignIn = () => {
         >
           Sign In
         </h2>
+
+        {error && <p style={{ color: "red" }}>{error}</p>}
 
         <TextField
           type="email"

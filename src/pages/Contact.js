@@ -1,7 +1,49 @@
+import React, { useState } from "react";
 import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
+import { auth, messagesCollection } from "../firebase/Firebase";
+import { addDoc } from "firebase/firestore";
 
 export const Contact = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [subject, setSubject] = useState("");
+  const [message, setMessage] = useState("");
+
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async () => {
+    const user = auth.currentUser;
+
+    if (!name || !email || !subject || !message) {
+      alert("Please fill out all the fields!");
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      await addDoc(messagesCollection, {
+        name: name,
+        email: email,
+        subject: subject,
+        message: message,
+        uid: user ? user.uid : "anonymous",
+      });
+
+      alert("Message sent!");
+      setName("");
+      setEmail("");
+      setSubject("");
+      setMessage("");
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Failed to send message.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
       <Header />
@@ -83,6 +125,8 @@ export const Contact = () => {
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <input
               placeholder="Your name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               style={{
                 width: "230px",
                 padding: "10px",
@@ -93,6 +137,8 @@ export const Contact = () => {
             />
             <input
               placeholder="Your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               style={{
                 width: "230px",
                 padding: "10px",
@@ -103,6 +149,8 @@ export const Contact = () => {
           </div>
           <input
             placeholder="Subject"
+            value={subject}
+            onChange={(e) => setSubject(e.target.value)}
             style={{
               borderRadius: "10px",
               padding: "8px",
@@ -112,6 +160,8 @@ export const Contact = () => {
           <textarea
             placeholder="Write a message"
             rows={6}
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
             style={{
               borderRadius: "10px",
               padding: "16px",
@@ -119,16 +169,19 @@ export const Contact = () => {
             }}
           ></textarea>
           <button
+            onClick={handleSubmit}
+            disabled={loading}
             style={{
               height: "36px",
               width: "140px",
               color: "white",
-              backgroundColor: "#4B6BFB",
+              backgroundColor: loading ? "#A5B4FC" : "#4B6BFB",
               border: "none",
               borderRadius: "8px",
+              cursor: loading ? "not-allowed" : "pointer",
             }}
           >
-            Send Message
+            {loading ? "sending..." : "Send Message"}
           </button>
         </div>
       </div>

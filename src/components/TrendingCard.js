@@ -1,14 +1,24 @@
 import Mashin from "../images/mashin.png";
 
 export const TrendingCard = ({ blog }) => {
+  if (!blog) return null;
   return (
-    <div style={{ position: "relative", cursor: "pointer" }}>
+    <div
+      style={{
+        position: "relative",
+        cursor: "pointer",
+        marginBottom: "50px",
+        width: "280px",
+        border: "1px solid lightgray",
+        borderRadius: "10px",
+      }}
+    >
       <div
         style={{
           height: "320px",
           width: "280px",
           borderRadius: "12px",
-          backgroundImage: `url(${blog.imageUrl || Mashin})`,
+          backgroundImage: `url(${blog.imageURL || Mashin} )`,
           backgroundPosition: "center",
           backgroundSize: "cover",
           filter: "brightness(60%)",
@@ -19,38 +29,39 @@ export const TrendingCard = ({ blog }) => {
           color: "white",
           position: "absolute",
           left: "20px",
-          top: "200px",
+          bottom: "20px",
+          zIndex: 1,
           display: "flex",
           flexDirection: "column",
-          gap: "20px",
-          width: "230px",
+          gap: "10px",
+          width: "240px",
         }}
       >
         <div>
           <span
             style={{
-              backgroundColor: "#4B6BFB",
+              backgroundColor: "rgb(75, 107, 251)",
               borderRadius: "6px",
               padding: "4px 10px",
+              fontSize: "12px",
+              display: "inline-block",
             }}
           >
-            {blog.tagName}
+            {blog.tag}
           </span>
         </div>
-        <div style={{ height: "70px", overflow: "hidden" }}>
-          <h2
-            style={{
-              fontSize: "18px",
-              overflow: "hidden",
-              display: "-webkit-box",
-              WebkitBoxOrient: "vertical",
-              WebkitLineClamp: "2",
-            }}
-          >
-            fdsf The Impact of Technology on the Workplace: How Technology is
-            Changing
-          </h2>
-        </div>
+        <h2
+          style={{
+            fontSize: "18px",
+            margin: "0px",
+            display: "-webkit-box",
+            WebkitBoxOrient: "vertical",
+            WebkitLineClamp: "2",
+            overflow: "hidden",
+          }}
+        >
+          {blog.title}
+        </h2>
       </div>
     </div>
   );

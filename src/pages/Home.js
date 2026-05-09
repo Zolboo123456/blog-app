@@ -1,155 +1,152 @@
-import { Header } from "../components/Header";
-import { Footer } from "../components/Footer";
-import Mashin from "../images/mashin.png";
+// import { Link } from "react-router-dom";
+// import { Button } from "../components/Button";
 import { useUserContext } from "../context/UserContext";
+// import { signOutFunction } from "../firebase/Firebase";
+import { Header } from "../components/Header";
+import { IconButton } from "@mui/material";
+import { SlideCard } from "../components/SlideCard";
 import { TrendingCard } from "../components/TrendingCard";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import { useBlogContext } from "../context/BlogContext";
+import { useState } from "react";
+import { Footer } from "../components/Footer";
 import { AllCard } from "../components/AllCard";
 
 export const Home = () => {
-  const blog = {
-    blogId: "1",
-    imageUrl: "",
-    tagName: "Technology",
-    title: "Title",
-  };
-  const { currentUser } = useUserContext();
+  // const { currentUser } = useUserContext();
+  const { blogs } = useBlogContext();
 
-  console.log(currentUser);
+  const trendingBlogs = [...blogs].slice(0, 4);
+
+  const [slideCount, setSlideCount] = useState(0);
+
+  const [filter, setFilter] = useState("All");
+
+  const filteredBlogs =
+    filter.toLowerCase() === "all"
+      ? blogs
+      : blogs.filter((blog) => blog.tag.toLowerCase() === filter.toLowerCase());
+
+  if (!blogs || blogs.length === 0) {
+    return <div>Loading...</div>;
+  }
+
+  console.log(blogs);
 
   return (
-    <div>
+    <div
+      style={{
+        maxWidth: "100%",
+        margin: "0 auto ",
+        display: "flex",
+        flexDirection: "column",
+        minWidth: "800px",
+      }}
+    >
       <Header />
 
-      <div
-        id="homeContainer"
-        style={{
-          padding: "0px 40px",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "start",
-          justifyContent: "start",
-          maxWidth: "1200px",
-          margin: "0 auto",
-        }}
-      >
+      <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+        <SlideCard blog={blogs[slideCount]} />
+
         <div
           style={{
             display: "flex",
-            flexDirection: "column",
-            alignItems: "flex-end",
-            gap: "20px",
-            margin: "50px 0px",
+            justifyContent: "end",
+            marginTop: "10px",
           }}
         >
+          <IconButton
+            onClick={() => setSlideCount((prev) => prev - 1)}
+            disabled={slideCount <= 0}
+          >
+            <ArrowBackIosNewIcon />
+          </IconButton>
+
+          <IconButton
+            onClick={() => setSlideCount((prev) => prev + 1)}
+            disabled={slideCount >= blogs.length - 1}
+          >
+            <ArrowForwardIosIcon />
+          </IconButton>
+        </div>
+        <div>
+          <h2>Trending</h2>
           <div
             style={{
-              position: "relative",
-              cursor: "pointer",
+              display: "flex",
+              maxWidth: "1200px",
               margin: "0 auto",
+              gap: "25px",
             }}
           >
-            <div
-              style={{
-                width: "1200px",
-                height: "600px",
-                borderRadius: "12px",
-                backgroundImage: `url(${Mashin})`,
-                backgroundPosition: "center",
-                backgroundSize: "cover",
-                filter: "brightness(80%)",
-              }}
-            />
-            <div
-              style={{
-                backgroundColor: "white",
-                padding: "40px",
-                position: "absolute",
-                borderRadius: "12px",
-                left: "25px",
-                bottom: "25px",
-                display: "flex",
-                flexDirection: "column",
-                width: "520px",
-                maxHeight: "230px",
-                gap: "20px",
-              }}
-            >
-              <div style={{ gap: "20px" }}>
-                <span
-                  style={{
-                    backgroundColor: "rgb(75, 107, 251)",
-                    borderRadius: "6px",
-                    padding: "4px 10px",
-                    color: "white",
-                  }}
-                >
-                  Technology
-                </span>
-                <div style={{ height: "100px", overflow: "hidden" }}>
-                  <h2
-                    style={{
-                      fontSize: "36px",
-                      overflow: "hidden",
-                      display: "-webkit-box",
-                      WebkitBoxOrient: "vertical",
-                      WebkitLineClamp: "2",
-                      margin: "0px",
-                      paddingTop: "10px",
-                      marginBottom: "20px",
-                    }}
-                  >
-                    The Impact of Technology on the Workplace: How Technology is
-                    Changing
-                  </h2>
-                </div>
-                <span>December 23, 2024</span>
-              </div>
-            </div>
+            {trendingBlogs.map((blog) => (
+              <TrendingCard blog={blog} />
+            ))}
           </div>
         </div>
-        <div
-          id="trending"
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "20px",
-            margin: "50px 0px",
-          }}
-        >
-          <h2>Trending</h2>
-          <div style={{ display: "flex", gap: "20px" }}>
-            <TrendingCard blog={blog} />
-          </div>
-        </div>
-        <div
-          id="allBlogPosts"
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "20px",
-            margin: "50px 0px",
-          }}
-        >
-          <h2 style={{ margin: "0px", padding: "0px" }}>All Blog Posts</h2>
+        <div>
+          <h2>All Blog Posts</h2>
           <div
             style={{
               display: "flex",
               gap: "20px",
-              fontSize: "14px",
-              fontWeight: "700",
+              marginBottom: "30px",
               cursor: "pointer",
             }}
           >
-            <div style={{ color: "rgb(212, 163, 115)" }}>All</div>
-            <div style={{ color: "rgb(0, 0, 0)" }}>Discovery</div>
-            <div style={{ color: "rgb(0, 0, 0)" }}>Technology</div>
+            <a
+              onClick={() => setFilter("all")}
+              style={{
+                color:
+                  filter.toLowerCase() === "all"
+                    ? "rgb(212, 163, 115)"
+                    : "black",
+              }}
+            >
+              All
+            </a>
+            <a
+              onClick={() => setFilter("technology")}
+              style={{
+                color:
+                  filter.toLowerCase() === "technology"
+                    ? "rgb(212, 163, 115)"
+                    : "black",
+              }}
+            >
+              Technology
+            </a>
+            <a
+              onClick={() => setFilter("art")}
+              style={{
+                color:
+                  filter.toLowerCase() === "art"
+                    ? "rgb(212, 163, 115)"
+                    : "black",
+              }}
+            >
+              Art
+            </a>
           </div>
-          <div style={{ display: "flex", gap: "20px" }}>
-            <AllCard />
+
+          <div
+            style={{
+              display: "flex",
+              maxWidth: "1200px",
+              margin: "0 auto",
+              gap: "25px",
+              flexWrap: "wrap", // Added flexWrap so they don't go off screen
+              marginBottom: "100px",
+            }}
+          >
+            {/* Map over filteredBlogs instead of blogs */}
+            {filteredBlogs.map((blog) => (
+              <AllCard key={blog.id} blog={blog} />
+            ))}
           </div>
         </div>
       </div>
-
       <Footer />
     </div>
   );

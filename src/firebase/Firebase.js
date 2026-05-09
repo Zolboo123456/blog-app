@@ -6,6 +6,7 @@ import {
   updateProfile,
   signOut,
 } from "firebase/auth";
+import { collection, getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -34,3 +35,8 @@ export const signInFunction = (email, password) => {
 export const signOutFunction = () => {
   return signOut(auth);
 };
+
+export const database = getFirestore(app);
+export const blogsCollection = collection(database, "blogs");
+export const tagsCollection = collection(database, "tags");
+export const messagesCollection = collection(database, "messages");

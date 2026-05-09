@@ -21,7 +21,7 @@ export const Header = () => {
       }}
     >
       <div style={{ display: "flex", alignItems: "center" }}>
-        <Link to="/home">
+        <Link to="/blogs">
           <img
             style={{ cursor: "pointer", height: "36px", width: "158" }}
             src={companyLogo}
@@ -38,14 +38,11 @@ export const Header = () => {
           gap: "20px",
         }}
       >
-        <a href="/home" style={{ textDecoration: "none", color: "#3B3C4A" }}>
+        <a href="/" style={{ textDecoration: "none", color: "#3B3C4A" }}>
           Home
         </a>
         <a href="/blogs" style={{ textDecoration: "none", color: "#3B3C4A" }}>
           Blogs
-        </a>
-        <a href="/tags" style={{ textDecoration: "none", color: "#3B3C4A" }}>
-          Tags
         </a>
         <a href="/contact" style={{ textDecoration: "none", color: "#3B3C4A" }}>
           Contact
